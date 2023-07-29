@@ -20,9 +20,22 @@
   -webkit-text-size-adjust: 100%;
 }
 
+@media (min-width: 1024px) {
+  body {
+    overflow: hidden;
+  }
+}
+
 body {
   margin: 0;
-  overflow: hidden;
+  font-size: 1.2rem;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #fff;
+  color: black;
 }
 
 ::-webkit-scrollbar {

@@ -10,7 +10,7 @@ const toggleDropdown = () => {
 
 <template>
   <nav id="the-header"
-    class="z-50 absolute text-1xl px-3 py-1 lg:text-2xl font-bold top-0 right-14 mt-8 select-none transform -translate-x-1/2 ease-in-out duration-300 hover:bg-[#0ef069] border-2 border-[#0ef069] rounded-xl">
+    class="z-50 absolute text-1xl px-3 py-1 lg:text-2xl font-bold top-0 right-0 lg:right-14 mt-8 select-none transform -translate-x-1/2 ease-in-out duration-300 hover:bg-[#0ef069] border-2 border-[#0ef069] rounded-xl">
     <a @click="toggleDropdown" class="cursor-pointer">
       <p>Menu</p>
     </a>
@@ -20,7 +20,7 @@ const toggleDropdown = () => {
     <aside v-if="showDropdown"
       class="absolute top-0 right-0 z-50 flex bg-[#242424] px-28 py-32 gap-3 w-1/6 transition-all duration-300 overflow-hidden min-h-screen flex-col text-right text-black ">
       <nav id="the-header"
-        class=" absolute text-1xl px-3 py-1 lg:text-2xl font-bold top-0 right-14 mt-8 select-none transform -translate-x-1/2 ease-in-out duration-300 hover:bg-[#0ef069] border-2 border-[#0ef069] rounded-xl">
+        class=" absolute text-1xl px-3 py-1 lg:text-2xl font-bold top-0 right-0 lg:right-14 mt-8 select-none transform -translate-x-1/2 ease-in-out duration-300 hover:bg-[#0ef069] border-2 border-[#0ef069] rounded-xl">
         <a @click="toggleDropdown" class="cursor-pointer">
           <p>Close</p>
         </a>

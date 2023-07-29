@@ -3,10 +3,17 @@ import { RouterView } from 'vue-router';
 import TheHeader from './components/TheHeader.vue';
 import './style.css'
 
+import { particlesInit, particlesLoaded, particlesConfig } from './particlesConfig';
+
 </script>
 
 <template>
   <div>
+    <vue-particles id="tsparticles" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded"
+      :options="particlesConfig" />
+    <vue-particles id="tsparticles" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded"
+      url="http://foo.bar/particles.json" />
+
     <TheHeader />
     <main>
       <router-view v-slot="{ Component }">
