@@ -1,12 +1,22 @@
 <template>
   <div>
-    <div class="hero-text my-14 lg:my-10">
+
+    <TheHeader v-if="!showStep1" class="step-2" />
+
+    <!-- Step 1 -->
+    <div v-if="showStep1" class="step-1">
+      &#x1F44B; Hi &#x1F44B;
+    </div>
+
+    <!-- Step 2 (Main content) -->
+    <div v-if="!showStep1" class="hero-text my-14 lg:my-10 step-2">
       <h1 class="select-none relative text-center text-7xl lg:text-[10rem] py-10 font-bold uppercase">
         Studio Legends
       </h1>
     </div>
 
-    <div class="content flex flex-col lg:flex-row gap-10 w-11/12 lg:h-[500px] justify-evenly lg:text-left">
+    <div v-if="!showStep1"
+      class="step-2 content flex flex-col lg:flex-row gap-10 w-11/12 lg:h-[500px] justify-evenly lg:text-left">
 
       <div class="content-text__container h-36 w-96 lg:h-auto flex">
         <div class="content-about overflow-y-auto">
@@ -66,7 +76,7 @@
 
       <div class="divider" />
 
-      <div v-if="imagesLoaded" class="content-img__container flex relative max-w-[800px]">
+      <div v-if="!showStep1 && imagesLoaded" class="content-img__container flex relative max-w-[800px] ml-8">
         <div class="content-img overflow-y-auto py-3">
           <h1 class="absolute top-0 left-0 translate-x-1 -translate-y-10">Images</h1>
           <div class="content-image flex flex-col gap-3">
@@ -76,8 +86,8 @@
       </div>
     </div>
 
-    <svg
-      class="z-[-100] scale-100 lg:scale-150 absolute top-1/2 -translate-y-1/4 lg:-translate-y-1/2 left-1/2 -translate-x-1/4 lg:-translate-x-1/2"
+    <svg v-if="!showStep1"
+      class="step-2 z-[-100] scale-100 lg:scale-150 absolute top-1/2 -translate-y-1/4 lg:-translate-y-1/2 left-1/2 -translate-x-1/4 lg:-translate-x-1/2"
       id="visual" viewBox="0 0 900 600" width="750" height="600" xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
       <g transform="translate(455.9762067861571 300.79233735587997)">
@@ -128,6 +138,22 @@
 <script setup lang="ts">
 import KUTE from 'kute.js'
 import { ref, onMounted, computed } from 'vue'
+import TheHeader from './TheHeader.vue';
+
+const showStep1 = ref(false); // Set it to "false" to hide the initial content
+
+// Function to trigger the animation
+const startAnimation = () => {
+  showStep1.value = true;
+
+  setTimeout(() => {
+    showStep1.value = false;
+
+    setTimeout(() => {
+      imagesLoaded.value = true;
+    }, 2000); // Add a slight delay (adjust as needed) before showing the main content
+  }, 2500); // Adjust the delay time (in milliseconds) to match the sliding-out animation duration
+};;
 
 const nameListRef = ref<HTMLUListElement | null>(null);
 
@@ -227,6 +253,14 @@ const checkImageLoad = () => {
 onMounted(checkImageLoad);
 
 onMounted(() => {
+  // Function to check if the screen is mobile (less than or equal to 768px)
+  const isMobileScreen = () => window.innerWidth <= 1024;
+
+  // Disable Step 1 if the screen is mobile
+  if (!isMobileScreen()) {
+    startAnimation();
+  }
+
   KUTE.fromTo(
     '#blob1',
     { path: '#blob1' },
@@ -250,6 +284,60 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* Step 1 animation */
+.step-1 {
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: visible !important;
+  margin: 0 !important;
+  padding: 100px;
+  font-size: 15rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  background: #10e064;
+  animation: slide-out 2.5s ease-in-out;
+}
+
+@media (max-width: 1024px) {
+  .step1 {
+    display: none;
+  }
+
+}
+
+.step-2 {
+  animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  80% {
+    transform: translateY(-200%);
+    opacity: 0;
+  }
+}
+
 .hero-text h1::before,
 .hero-text h1::after {
   content: '';

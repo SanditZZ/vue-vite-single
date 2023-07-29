@@ -1,5 +1,7 @@
 <template>
   <div class="p-5">
+    <TheHeader />
+
     <h1 class="text-4xl uppercase font-bold">About Page</h1>
     <div class="content-text">
       <p>
@@ -41,5 +43,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import TheHeader from './TheHeader.vue';
+
 </script>

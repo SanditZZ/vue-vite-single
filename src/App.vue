@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import TheHeader from './components/TheHeader.vue';
 import './style.css'
 
 import { particlesInit, particlesLoaded, particlesConfig } from './particlesConfig';
@@ -14,7 +13,6 @@ import { particlesInit, particlesLoaded, particlesConfig } from './particlesConf
     <vue-particles id="tsparticles" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded"
       url="http://foo.bar/particles.json" />
 
-    <TheHeader />
     <main>
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
