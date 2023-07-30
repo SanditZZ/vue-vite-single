@@ -18,13 +18,15 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.build-publish.outputs.page_url }}
+  # Build job
+  build:
     runs-on: ubuntu-latest
+    environment:
+      name: demo
+      url: ${{ steps.deploy_to_pages.outputs.github_pages_url }}
     steps:
-    - id: build-publish
-      uses: bitovi/github-actions-react-to-ghp@v1.2.0
-      with:
-        path: ./dist
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Vite Github Pages Deployer
+        uses: skywarth/vite-github-pages-deployer@master
+        id: deploy_to_pages
