@@ -86,7 +86,17 @@
       </div>
     </div>
 
-    <svg v-if="!showStep1"
+    <div v-if="!showStep1" class="infinite-scroll-container">
+      <div class="marquee">
+        <div class="marquee__group">
+          <div v-for="(word, index) in words" :key="index" class="marquee__word">
+            {{ word }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <svg
       class="step-2 z-[-100] scale-100 lg:scale-150 absolute top-1/2 -translate-y-1/4 lg:-translate-y-1/2 left-1/2 -translate-x-1/4 lg:-translate-x-1/2"
       id="visual" viewBox="0 0 900 600" width="750" height="600" xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
@@ -117,7 +127,7 @@
       </g>
     </svg>
 
-    <svg class="hidden lg:block z-[-100] absolute bottom-0 translate-y-1/2 right-0 translate-x-1/2" id="visual"
+    <svg class="hidden lg:block z-[-100] absolute bottom-0 translate-y-1/2 right-0 translate-x-[450px]" id="visual"
       viewBox="0 0 900 600" width="900" height="600" xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
       <g transform="translate(555.9762067861571 202.79233735587997)">
@@ -158,6 +168,15 @@ const startAnimation = () => {
 const nameListRef = ref<HTMLUListElement | null>(null);
 
 const names = ['Po', 'Rose', 'Lee', 'Jack', 'Bobby', 'Gilbert', 'Tony', 'Bill', 'Lux', 'William', 'Cho'];
+
+const words: string[] = [
+  // Replace this with the words you want to scroll
+  'Just Do It',
+  'Never Doubt Hard Work',
+  'Destiny Awaits Everyone',
+  'Keep on Dreaming',
+  'Lifestyle is Eternal',
+];
 
 type ImagesByNames = {
   [key: string]: string[];
@@ -254,7 +273,7 @@ onMounted(checkImageLoad);
 
 onMounted(() => {
   // Function to check if the screen is mobile (less than or equal to 768px)
-  const isMobileScreen = () => window.innerWidth <= 1024;
+  const isMobileScreen = () => window.innerWidth <= 768;
 
   // Disable Step 1 if the screen is mobile
   if (!isMobileScreen()) {
@@ -365,6 +384,55 @@ onMounted(() => {
   font-weight: 700;
   font-size: 1.5rem;
   text-transform: uppercase;
+}
+
+.infinite-scroll-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 45rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin: auto;
+  max-width: 100vw;
+}
+
+.marquee {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 4rem;
+  mask-image: linear-gradient(to right),
+    hsl(0 0% 0% / 0),
+    hsl(0 0% 0% / 1) 20%,
+    hsl(0 0% 0% / 1) 80%,
+    hsl(0 0% 0% / 0);
+}
+
+.marquee__group {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 19rem;
+  min-width: 100%;
+  animation: scroll-x 20s linear infinite;
+}
+
+@keyframes scroll-x {
+  from {
+    transform: translateX(260%);
+  }
+
+  to {
+    transform: translateX(-260%);
+  }
+}
+
+.marquee__word {
+  flex-shrink: 0;
+  min-width: 0;
 }
 
 .content-text {
