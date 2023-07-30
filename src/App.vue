@@ -11,7 +11,7 @@ import { particlesInit, particlesLoaded, particlesConfig } from './particlesConf
     <vue-particles id="tsparticles" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded"
       :options="particlesConfig" />
     <vue-particles id="tsparticles" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded"
-      url="http://foo.bar/particles.json" />
+      url="https://foo.bar/particles.json" />
 
     <main>
       <router-view v-slot="{ Component }">
