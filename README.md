@@ -2,4 +2,4 @@
 **[Live Demo](https://vue-vite-single.netlify.app/)**
 Created using  **Vue** + **Vite** & **TypeScript**
 
-[<img src="./vue-vite-single.png" alt="Portfolio Website" style="object-fit: cover; width: 100vw; height: auto;">](https://sanditzz.github.io/3d-portfolio-po/)
+[<img src="./vue-vite-single.png" alt="Portfolio Website" style="object-fit: cover; width: 100vw; height: auto;">](https://vue-vite-single.netlify.app/)
