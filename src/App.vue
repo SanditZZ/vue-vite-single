@@ -2,16 +2,16 @@
 import { RouterView } from 'vue-router';
 import './style.css'
 
-// import { particlesInit, particlesLoaded, particlesConfig } from './particlesConfig';
+import { particlesInit, particlesLoaded, particlesConfig } from './particlesConfig';
 
 </script>
 
 <template>
   <div>
-    <!-- <vue-particles id="tsparticles" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded"
+    <vue-particles id="tsparticles" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded"
       :options="particlesConfig" />
     <vue-particles id="tsparticles" :particlesInit="particlesInit" :particlesLoaded="particlesLoaded"
-      url="https://foo.bar/particles.json" /> -->
+      url="https://foo.bar/particles.json" />
 
     <main>
       <router-view v-slot="{ Component }">
